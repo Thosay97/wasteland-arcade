@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bs1jaq7jvxr1m"]
+
+[ext_resource type="Script" uid="uid://ruifvbwsi3ei" path="res://scenes/zones/zone_placeholder.gd" id="1_8hn3v"]
+
+[sub_resource type="Environment" id="Environment_2vp25"]
+background_mode = 1
+background_color = Color(0.03, 0.04, 0.06, 1)
+
+[node name="DerailedMetro" type="Node3D" unique_id=1256487429]
+script = ExtResource("1_8hn3v")
+zone_id = "derailed_metro"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1524664202]
+environment = SubResource("Environment_2vp25")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1916987750]
+current = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1038324423]
+
+[node name="Info" type="Label" parent="UI" unique_id=499603198]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_color = Color(1, 0.72, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "DERAILED METRO"
+horizontal_alignment = 1
+vertical_alignment = 1

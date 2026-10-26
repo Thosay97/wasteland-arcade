@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://crnhhu5g5fr5f"]
+
+[ext_resource type="Script" uid="uid://bxi1txt52w2nq" path="res://scenes/player/player.gd" id="1_8afob"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dovo2"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmlin"]
+albedo_color = Color(0.33, 0.27, 0.2, 1)
+roughness = 0.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lvxji"]
+radius = 0.38
+height = 1.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p47bc"]
+albedo_color = Color(0.22, 0.2, 0.18, 1)
+roughness = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_75vfm"]
+radius = 0.24
+height = 0.48
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0owmy"]
+albedo_color = Color(0.2, 1, 0.3, 1)
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.35, 1, 0.3, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qek5x"]
+size = Vector3(0.36, 0.1, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gtgg"]
+albedo_color = Color(0.42, 0.22, 0.12, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_h17s1"]
+size = Vector3(0.5, 0.6, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_je7p5"]
+albedo_color = Color(0.3, 0.9, 0.25, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(0.3, 1, 0.25, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fm80t"]
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.45
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gx1jg"]
+radius = 0.25
+
+[node name="Player" type="CharacterBody3D" unique_id=1918584385]
+collision_layer = 2
+floor_snap_length = 0.3
+script = ExtResource("1_8afob")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1423876908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_dovo2")
+
+[node name="Body" type="Node3D" parent="." unique_id=331261934]
+
+[node name="Torso" type="MeshInstance3D" parent="Body" unique_id=24480523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = SubResource("StandardMaterial3D_gmlin")
+mesh = SubResource("CapsuleMesh_lvxji")
+
+[node name="Head" type="MeshInstance3D" parent="Body" unique_id=211367537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+material_override = SubResource("StandardMaterial3D_p47bc")
+mesh = SubResource("SphereMesh_75vfm")
+
+[node name="Visor" type="MeshInstance3D" parent="Body" unique_id=832654270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63, -0.2)
+material_override = SubResource("StandardMaterial3D_0owmy")
+mesh = SubResource("BoxMesh_qek5x")
+
+[node name="Backpack" type="MeshInstance3D" parent="Body" unique_id=1938380714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.38)
+material_override = SubResource("StandardMaterial3D_5gtgg")
+mesh = SubResource("BoxMesh_h17s1")
+
+[node name="Canister" type="MeshInstance3D" parent="Body" unique_id=1807250584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.05, 0.55)
+material_override = SubResource("StandardMaterial3D_je7p5")
+mesh = SubResource("CylinderMesh_fm80t")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1096558091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1627317686]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.5, 0, 0)
+shape = SubResource("SphereShape3D_gx1jg")
+spring_length = 4.0
+margin = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=819110917]
+current = true
+fov = 70.0
+far = 250.0
