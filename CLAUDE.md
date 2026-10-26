@@ -39,11 +39,16 @@ Gritty but stylised realism: rust, broken concrete, overgrown vines, toxic green
 - Entering a portal loads the zone scene. Finishing or quitting a zone returns the player to the hub in front of that portal.
 - GameState autoload stores scrap (currency) and best score per zone, saved to `user://save.json`.
 
-### 2. Zone A: "The Toxic Coil" (snake mechanic)
-- Grid arena inside a flooded, glowing sewer chamber, top-down camera.
-- Player controls a mutant sludge serpent. Eating canisters grows it by one segment and adds score.
-- Death on hitting walls, debris or its own body. Speed increases every 5 canisters.
-- Results screen: score, best score, scrap earned (score / 10), Retry and Return to Hub buttons.
+### 2. Zone A: "The Toxic Coil" (snake mechanic, ridden in 3D)
+- Setting: a ruined playground at dusk (rusted slides, broken swings, a cracked play court, toxic puddles), about 60 x 60 m, walled in by fences and rubble. The player arrives on foot and walks around freely with the same third-person controller as the hub.
+- The grid arena is the cracked play court in the middle: 18 x 18 cells, 2 m per cell. Rocks and low maze walls (fence panels, rubble) sit on grid cells as fixed obstacles.
+- A giant mutant sludge serpent lies coiled and breathing at the edge of the court. Walk up to its head to get the prompt "Press E to ride".
+- Riding: the player climbs onto the serpent's head, and the serpent moves on the grid like the classic game. The camera chases the head from above and behind, always facing map north, so the arrow keys and WASD steer in absolute map directions.
+- A classic top-down 2D grid map of the court is shown in a panel at the side of the screen while riding: walls, rocks, canisters and the serpent's body.
+- Eating canisters grows the serpent by one segment and adds score. Speed increases every 5 canisters.
+- Death on hitting the court edge, rocks, maze walls or its own body. The serpent collapses and the rider is thrown off onto the ground.
+- Results screen: score, best score, scrap earned (score / 10), Retry (remount at the start), Walk Around (close the results and explore on foot), Return to Hub.
+- Esc while riding opens the pause menu (Resume, Return to Hub). On foot, Esc frees the cursor as in the hub.
 
 ### 3. Zone B: "Derailed Metro" (3-lane endless runner)
 - Abandoned flooded subway tunnel, behind-the-player camera.
