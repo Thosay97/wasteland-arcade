@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_top_color = Color(0.25, 0.45, 0.8, 1)
+sky_horizon_color = Color(0.7, 0.78, 0.88, 1)
+ground_bottom_color = Color(0.16, 0.17, 0.15, 1)
+ground_horizon_color = Color(0.7, 0.78, 0.88, 1)
+
+[sub_resource type="Sky" id="Sky_main"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 2
+sky = SubResource("Sky_main")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 3
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+size = Vector2(200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.35, 0.52, 0.3, 1)
+roughness = 0.95
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hero"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hero"]
+albedo_color = Color(0.95, 0.45, 0.2, 1)
+roughness = 0.45
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.536875, -0.636738, 0.55347, 0, 0.656033, 0.754732, -0.843661, -0.405197, 0.352208, 0, 10, 0)
+light_angular_distance = 0.5
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ground")
+surface_material_override/0 = SubResource("StandardMaterial3D_ground")
+
+[node name="Hero" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_hero")
+surface_material_override/0 = SubResource("StandardMaterial3D_hero")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.810679, -0.128625, 0.571187, 0, 0.97557, 0.219687, -0.585491, -0.178096, 0.790875, 2.6, 1.9, 3.6)
