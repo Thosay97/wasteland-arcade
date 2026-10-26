@@ -31,3 +31,6 @@ exports/
 *.tmp
 desktop.ini
 .mono/
+
+# Summer writes this backup whenever project settings change
+project.godot.bak
