@@ -15,6 +15,10 @@ extends CharacterBody3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+## Whether the player wants mouse look. The OS can drop the capture on its own
+## (focus loss, alt-tab, clicking the editor), so we re-apply it when focus returns.
+var _wants_capture := true
+
 @onready var body: Node3D = $Body
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var spring_arm: SpringArm3D = $CameraPivot/SpringArm3D
@@ -23,19 +27,32 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready() -> void:
 	add_to_group("player")
 	spring_arm.add_excluded_object(get_rid())
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_set_mouse_captured(true)
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_IN and _wants_capture:
+		_set_mouse_captured(true)
+
+
+# _input rather than _unhandled_input so no GUI control can swallow mouse look
+# or the click that recaptures the cursor.
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_pivot.rotation.y -= event.relative.x * mouse_sensitivity
 		spring_arm.rotation.x = clampf(
 			spring_arm.rotation.x - event.relative.y * mouse_sensitivity,
 			deg_to_rad(min_pitch_deg), deg_to_rad(max_pitch_deg))
 	elif event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		_set_mouse_captured(false)
 	elif event is InputEventMouseButton and event.pressed and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		_set_mouse_captured(true)
+		get_viewport().set_input_as_handled()
+
+
+func _set_mouse_captured(captured: bool) -> void:
+	_wants_capture = captured
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if captured else Input.MOUSE_MODE_VISIBLE
 
 
 func _physics_process(delta: float) -> void:
