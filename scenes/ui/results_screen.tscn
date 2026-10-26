@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://badu00128m5tt"]
+
+[ext_resource type="Script" uid="uid://w121jakl8yb2" path="res://scenes/ui/results_screen.gd" id="1_uh8bn"]
+
+[node name="ResultsScreen" type="CanvasLayer" unique_id=1837528879]
+layer = 10
+script = ExtResource("1_uh8bn")
+
+[node name="Root" type="Control" parent="." unique_id=146343286]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim" type="ColorRect" parent="Root" unique_id=1871698988]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.55)
+
+[node name="Panel" type="PanelContainer" parent="Root" unique_id=235869154]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Root/Panel" unique_id=1377659759]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="Root/Panel/Margin" unique_id=1076776933]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Root/Panel/Margin/VBox" unique_id=650701071]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 1, 0.45, 1)
+theme_override_font_sizes/font_size = 52
+text = "RUN OVER"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Root/Panel/Margin/VBox" unique_id=1510513611]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.78, 1)
+theme_override_font_sizes/font_size = 34
+text = "SCORE  0"
+horizontal_alignment = 1
+
+[node name="Best" type="Label" parent="Root/Panel/Margin/VBox" unique_id=856238480]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.62, 1)
+theme_override_font_sizes/font_size = 28
+text = "BEST  0"
+horizontal_alignment = 1
+
+[node name="Scrap" type="Label" parent="Root/Panel/Margin/VBox" unique_id=1255340297]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.72, 0.3, 1)
+theme_override_font_sizes/font_size = 30
+text = "+0 SCRAP"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Root/Panel/Margin/VBox" unique_id=1623794056]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Root/Panel/Margin/VBox/Buttons" unique_id=1278432284]
+custom_minimum_size = Vector2(200, 56)
+layout_mode = 2
+focus_neighbor_right = NodePath("../HubButton")
+text = "Retry"
+
+[node name="HubButton" type="Button" parent="Root/Panel/Margin/VBox/Buttons" unique_id=1499592461]
+custom_minimum_size = Vector2(200, 56)
+layout_mode = 2
+focus_neighbor_left = NodePath("../RetryButton")
+text = "Return to Hub"

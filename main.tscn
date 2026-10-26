@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3 uid="uid://pde43q4yl85h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.25, 0.45, 0.8, 1)
@@ -29,25 +29,25 @@ roughness = 0.95
 albedo_color = Color(0.95, 0.45, 0.2, 1)
 roughness = 0.45
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" unique_id=287475173]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2110218900]
 environment = SubResource("Environment_main")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=176958143]
 transform = Transform3D(0.536875, -0.636738, 0.55347, 0, 0.656033, 0.754732, -0.843661, -0.405197, 0.352208, 0, 10, 0)
 light_angular_distance = 0.5
 shadow_enabled = true
 directional_shadow_max_distance = 40.0
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=369894299]
 mesh = SubResource("PlaneMesh_ground")
 surface_material_override/0 = SubResource("StandardMaterial3D_ground")
 
-[node name="Hero" type="MeshInstance3D" parent="."]
+[node name="Hero" type="MeshInstance3D" parent="." unique_id=1130936756]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_hero")
 surface_material_override/0 = SubResource("StandardMaterial3D_hero")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1908263518]
 transform = Transform3D(0.810679, -0.128625, 0.571187, 0, 0.97557, 0.219687, -0.585491, -0.178096, 0.790875, 2.6, 1.9, 3.6)
